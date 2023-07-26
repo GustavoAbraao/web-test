@@ -27,4 +27,4 @@ jobs:
 
     - name: Execução do teste
       run: |
-        robot "Automações RobotFramework/web-test/amazon_testes.robot"
+        robot amazon_testes.robot
