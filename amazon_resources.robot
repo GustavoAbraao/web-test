@@ -10,11 +10,11 @@ ${URL}                         https://www.amazon.com.br/
 ${MENU_ELETRONICOS}            //a[@data-csa-c-slot-id='nav_cs_7']
 ${HEADER_ELETRONICOS}          //h1[contains(.,'Eletrônicos e Tecnologia')]  
 ${ADD_CARRINHO}                //input[@name='submit.add-to-cart']
-${HEADLESS}                    --headless
+
 #Etapa de implementação das Keywords definidas nos casos de teste
 *** Keywords ***
 Abrir o navegador
-    Open Browser    browser=${BROWSER}    options=${HEADLESS}
+    Open Browser    browser=${BROWSER}    
     Maximize Browser Window
 
 Fechar o navegador
