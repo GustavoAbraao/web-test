@@ -1,5 +1,3 @@
-#Arquivo de execução do Robot Framework em uma pipeline CI/CD no github
-
 name: Amazon_testes CI
 
 on:
@@ -18,15 +16,25 @@ jobs:
     - name: Configuração do Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.11'  # Substitua 'x' pela versão do Python que você está usando
+        python-version: '3.11' 
 
-    - name: Instalação do Robot Framework
+    - name: Instalação do Robot Framework e dependências
       run: |
         python -m pip install --upgrade pip
         python -m pip install robotframework
         python -m pip install robotframework-seleniumlibrary
         python -m pip install selenium==4.9.1
 
+    - name: Instalação do ChromeDriver
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y chromium-chromedriver
+
+    - name: Configuração do ChromeDriver
+      run: |
+        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+        export PATH=$PATH:/usr/lib/chromium-browser/
+      
     - name: Execução do teste
       run: |
         robot amazon_testes.robot
