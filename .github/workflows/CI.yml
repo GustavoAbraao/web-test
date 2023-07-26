@@ -32,8 +32,9 @@ jobs:
 
     - name: Configuração do ChromeDriver
       run: |
-        sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
-        export PATH=$PATH:/usr/lib/chromium-browser/
+        if [ ! -f "/usr/bin/chromedriver" ]; then
+          sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
+        fi
       
     - name: Execução do teste
       run: |
