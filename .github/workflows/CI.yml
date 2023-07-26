@@ -24,7 +24,8 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         python -m pip install robotframework
-        python -m pip install seleniumlibrary==4.9.1
+        python -m pip install robotframework-seleniumlibrary
+        python -m pip install selenium==4.9.1
 
     - name: Execução do teste
       run: |
