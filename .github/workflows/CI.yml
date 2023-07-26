@@ -25,17 +25,20 @@ jobs:
         python -m pip install robotframework-seleniumlibrary
         python -m pip install selenium==4.9.1
 
-    - name: Instalação do ChromeDriver
+    - name: Instalação do ChromeDriver e Xvfb
       run: |
         sudo apt-get update
         sudo apt-get install -y chromium-chromedriver
+        sudo apt-get install -y xvfb
 
-    - name: Configuração do ChromeDriver
+    - name: Configuração do ChromeDriver e Xvfb
       run: |
         if [ ! -f "/usr/bin/chromedriver" ]; then
           sudo ln -s /usr/lib/chromium-browser/chromedriver /usr/bin/chromedriver
         fi
-      
+        export DISPLAY=:99.0
+        Xvfb -ac :99 -screen 0 1280x1024x16 > /dev/null 2>&1 &
+
     - name: Execução do teste
       run: |
-        robot amazon_testes.robot
+        robot --variable BROWSER:Chrome --variable HEADLESS:--headless amazon_testes.robot
